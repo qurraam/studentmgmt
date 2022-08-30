@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Sample</title>
+    </head>
+    <body>
+       
+        <form>
+            <label for="name">name</label><br>
+            <input type="text" id="name" name="name"><br>
+            <label for="address">address</label><br>
+            <input type="text" id="address" name="address"><br>
+            <input type="button" onclick="test()" value="save"/>
+            
+          </form>
+
+          <script>
+            function test() {
+
+                var name = document.getElementById("name").value;
+                var address = document.getElementById("address").value;
+                var obj = new Object();
+                obj.name = name;
+                obj.address = address;
+
+                var jsonString= JSON.stringify(obj);
+              alert(jsonString);
+         
+
+            const xhr = new XMLHttpRequest()
+
+
+            xhr.addEventListener('readystatechange', function() {
+            if (this.readyState === this.DONE) {
+                console.log(this.responseText)
+            }
+            })
+
+            xhr.open('POST', 'http://192.168.1.6:8080/school/department')
+            xhr.setRequestHeader('content-type', 'application/json')
+
+            xhr.send(jsonString)
+
+              
+              
+
+            }
+          </script>
+     
+    
+    </body>
+</html>
